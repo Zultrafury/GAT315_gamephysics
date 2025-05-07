@@ -24,7 +24,7 @@ void Scene::EndDraw()
 	EndDrawing();
 }
 
-void Scene::DrawGrid(float slices, float thickness, const Color& color)
+void Scene::DrawGrid(float slices, float thickness, const Color& color) const
 {
 	for (float i = -slices; i <= slices; i++)
 	{
@@ -33,7 +33,7 @@ void Scene::DrawGrid(float slices, float thickness, const Color& color)
 	}
 }
 
-void Scene::DrawCircle(Vector2 vec, float radius, const Color& color)
+void Scene::DrawCircle(const Vector2& vec, float radius, const Color& color) const
 {
 	DrawCircleV(m_camera->WorldToScreen(vec), m_camera->WorldToScreen(radius), color);
 }

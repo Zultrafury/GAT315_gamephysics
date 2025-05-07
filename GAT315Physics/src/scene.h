@@ -22,11 +22,12 @@ public:
 	void SetCamera(SceneCamera* camera) { m_camera = camera; }
 	SceneCamera* GetCamera() { return m_camera; }
 
+	friend struct Body;
+	
 protected:
-	void DrawGrid(float slices, float thickness, const Color& color);
-	void DrawCircle(Vector2 vec, float radius, const Color& color);
+	void DrawGrid(float slices, float thickness, const Color& color) const;
+	void DrawCircle(const Vector2& vec, float radius, const Color& color) const;
 
-protected:
 	int m_width{ 0 };
 	int m_height{ 0 };
 	Color m_background{ WHITE };
