@@ -18,6 +18,4 @@ public:
     void DrawGUI() override;
 
 private:
-    Body* m_head = nullptr;
-    Body* player = nullptr;
 };

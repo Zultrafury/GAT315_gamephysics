@@ -4,6 +4,7 @@
 
 struct Body
 {
+public:
     Body() = default;
     Body(const Vector2& position, const Vector2& velocity, float size = 0.25f, const Color& color = WHITE) :
         pos{position},
@@ -13,6 +14,9 @@ struct Body
     {}
     Body(const Vector2& position, const Vector2& velocity, const Color& color = WHITE) :
         Body(position,velocity,0.25f,color)
+    {}
+    Body(const Vector2& position, float size, const Color& color = WHITE) :
+        Body(position,Vector2{0,0},size,color)
     {}
 
     void Step(float dt);

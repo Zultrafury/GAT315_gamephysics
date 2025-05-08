@@ -25,10 +25,12 @@ int main ()
 	// Utility function from resource_dir.h to find the resources folder and set it as the current working directory so we can load from it
 	SearchAndSetResourceDir("resources");
 
+	SetTargetFPS(60);
+
 	// Load a texture from the resources directory
 	Texture wabbit = LoadTexture("wabbit_alpha.png");
 
-	Scene* scene = new PolarScene("spirals", 1280, 720);
+	Scene* scene = new VectorScene("trigomonominee", 1280, 720);
 	scene->Initialize();
 
 	// game loop

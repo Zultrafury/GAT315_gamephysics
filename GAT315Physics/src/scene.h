@@ -3,6 +3,8 @@
 #include "scene_camera.h"
 #include <string>
 
+class World;
+
 class Scene
 {
 public:
@@ -34,4 +36,5 @@ protected:
 	Color m_background{ WHITE };
 
 	SceneCamera* m_camera{ nullptr };
+	World* m_world{nullptr};
 };

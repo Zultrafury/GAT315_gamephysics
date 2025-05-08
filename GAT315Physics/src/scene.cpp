@@ -1,4 +1,5 @@
 #include "scene.h"
+#include "world.h"
 
 Scene::Scene(const std::string& title, int width, int height, const Color& background) :
 	m_width{ width },
