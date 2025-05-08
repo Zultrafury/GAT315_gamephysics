@@ -37,3 +37,8 @@ void Scene::DrawCircle(const Vector2& vec, float radius, const Color& color) con
 {
 	DrawCircleV(m_camera->WorldToScreen(vec), m_camera->WorldToScreen(radius), color);
 }
+
+void Scene::DrawLine(const Vector2& first, const Vector2& last, const Color& color) const
+{
+	DrawLineV(m_camera->WorldToScreen(first), m_camera->WorldToScreen(last), color);
+}

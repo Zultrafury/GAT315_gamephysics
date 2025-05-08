@@ -7,6 +7,7 @@ by Jeffery Myers is marked with CC0 1.0. To view a copy of this license, visit h
 
 */
 
+#include "polar_scene.h"
 #include "trigonometry_scene.h"
 #include "raylib.h"
 
@@ -27,7 +28,7 @@ int main ()
 	// Load a texture from the resources directory
 	Texture wabbit = LoadTexture("wabbit_alpha.png");
 
-	Scene* scene = new VectorScene("trigonometry", 1280, 720);
+	Scene* scene = new PolarScene("spirals", 1280, 720);
 	scene->Initialize();
 
 	// game loop

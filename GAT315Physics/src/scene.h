@@ -27,6 +27,7 @@ public:
 protected:
 	void DrawGrid(float slices, float thickness, const Color& color) const;
 	void DrawCircle(const Vector2& vec, float radius, const Color& color) const;
+	void DrawLine(const Vector2& first, const Vector2& last, const Color& color) const;
 
 	int m_width{ 0 };
 	int m_height{ 0 };
