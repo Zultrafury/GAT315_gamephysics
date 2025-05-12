@@ -1,9 +1,18 @@
 ﻿#pragma once
 #include "raylib.h"
+#include "raymath.h"
 #include "scene.h"
 
 struct Body
 {
+public:
+    enum class Type
+    {
+        Static,
+        Kinematic,
+        Dynamic
+    };
+    
 public:
     Body() = default;
     Body(const Vector2& position, const Vector2& velocity, float size = 0.25f, const Color& color = WHITE) :
@@ -12,6 +21,15 @@ public:
         size{size},
         col{color}
     {}
+    Body(const Vector2& position, float mass, Type type, float size = 0.25f, const Color& color = WHITE) :
+        pos{position},
+        type{type},
+        size{size},
+        col{color},
+        mass{mass}
+    {
+        invMass = (type == Type::Dynamic) ? 1 / mass : 0;
+    }
     Body(const Vector2& position, const Vector2& velocity, const Color& color = WHITE) :
         Body(position,velocity,0.25f,color)
     {}
@@ -21,11 +39,22 @@ public:
 
     void Step(float dt);
     void Draw(const Scene& scene) const;
+
+    void ApplyForce(const Vector2& force);
+    void ApplyGravity(const Vector2& gravity) { frc += (gravity * gravScale) * mass; }
+    void ClearForce() { frc = Vector2{0,0}; }
     
-    Vector2 pos;
-    Vector2 vel;
+    Vector2 pos{0,0};
+    Vector2 vel{0,0};
+    Vector2 acl{0,0};
+    Vector2 frc{0,0};
+    Type type{Type::Dynamic};
     float size;
     Color col;
+    float mass{1};
+    float invMass{1};
+
+    float gravScale{1};
 
     Body* next = nullptr;
     Body* prev = nullptr;

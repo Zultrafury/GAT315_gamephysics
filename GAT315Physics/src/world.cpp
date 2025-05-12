@@ -1,5 +1,6 @@
 ﻿#include "world.h"
 #include "body.h"
+#include "raymath.h"
 
 World::~World() {
     DestroyAll();
@@ -23,7 +24,9 @@ void World::Step(float dt)
 {
     for (auto body : m_bodies)
     {
+        body->ApplyGravity(m_gravity);
         body->Step(dt);
+        body->ClearForce();
     }
 }
 

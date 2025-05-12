@@ -32,6 +32,20 @@ void VectorScene::Update()
     }
     
     m_world->Step(dt);
+
+    for (auto body : m_world->GetBodies())
+    {
+        if (body->pos.y < -5)
+        {
+            body->pos.y = -5;
+            body->vel.y *= -1;
+        }
+        if (body->pos.y > 5)
+        {
+            body->pos.y = 5;
+            body->vel.y *= -1;
+        }
+    }
 }
 
 void VectorScene::Draw()

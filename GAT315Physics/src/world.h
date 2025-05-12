@@ -17,7 +17,9 @@ public:
     void Draw(const Scene& scene);
     void DestroyAll();
 
-private:
+    std::vector<Body*>& GetBodies() { return m_bodies; }
+
     Vector2 m_gravity;
+private:
     std::vector<Body*> m_bodies;
 };
