@@ -40,3 +40,23 @@ Vector2 SceneCamera::WorldToScreen(const Vector2& world)
 {
 	return { world.x * m_ppu, world.y * m_ppu };
 }
+
+Rectangle SceneCamera::ScreenToWorld(const Rectangle& screen)
+{
+	// convert to centered coordinates
+	float screenX = screen.x - m_camera.offset.x;
+	float screenY = screen.y - m_camera.offset.y;
+
+	// convert to world, flip y
+	float worldX = screenX / (m_camera.zoom * m_ppu) + m_camera.target.x;
+	float worldY = -screenY / (m_camera.zoom * m_ppu) + m_camera.target.y;
+	float worldW = screen.width / (m_camera.zoom * m_ppu);
+	float worldH = -screen.height / (m_camera.zoom * m_ppu);
+	
+	return { worldX, worldY, worldW, worldH };
+}
+
+Rectangle SceneCamera::WorldToScreen(const Rectangle& world)
+{
+	return { world.x * m_ppu, world.y * m_ppu, world.width * m_ppu, -world.height * m_ppu };
+}

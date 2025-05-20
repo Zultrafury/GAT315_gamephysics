@@ -30,6 +30,9 @@ public:
 	Vector2 ScreenToWorld(const Vector2& screen);
 	Vector2 WorldToScreen(const Vector2& world);
 
+	Rectangle ScreenToWorld(const Rectangle& screen);
+	Rectangle WorldToScreen(const Rectangle& world);
+
 private:
 	Camera2D m_camera;
 
