@@ -8,9 +8,9 @@ struct Body
 public:
     enum class Type
     {
+        Dynamic,
         Static,
-        Kinematic,
-        Dynamic
+        Kinematic
     };
     
 public:
@@ -21,10 +21,11 @@ public:
         size{size},
         col{color}
     {}
-    Body(const Vector2& position, float mass, Type type, float size = 0.25f, const Color& color = WHITE) :
+    Body(const Vector2& position, float mass, Type type, float size = 0.25f, float damping = 0.5f, const Color& color = WHITE) :
         pos{position},
         type{type},
         size{size},
+        damping{damping},
         col{color},
         mass{mass}
     {
@@ -50,6 +51,7 @@ public:
     Vector2 frc{0,0};
     Type type{Type::Dynamic};
     float size;
+    float damping = 0.5f;
     Color col;
     float mass{1};
     float invMass{1};

@@ -18,4 +18,12 @@ public:
     void DrawGUI() override;
 
 private:
+    // GUI vars
+    bool TypeDropdownEditMode = false;
+    int TypeDropdownActive = 0;            // DropdownBox: TypeDropdown
+    float MassSliderValue = 1;            // SliderBar: MassSlider
+    float SizeSliderValue = 0.1f;            // SliderBar: SizeSlider
+    float DampingSliderValue = 0.5f;            // SliderBar: DampingSlider
+    float GravitySliderValue = 9.81f;            // SliderBar: GravitySlider
+    float PullSliderValue = 0.0f;            // SliderBar: PullSlider
 };

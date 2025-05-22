@@ -10,7 +10,7 @@ void Body::Step(float dt)
 
     SemiImplicitIntegrator(*this,dt);
     
-    vel *= 1 / (1 + (dt * 0.5f));
+    vel *= 1 / (1 + (dt * damping));
 }
 
 void Body::Draw(const Scene& scene) const

@@ -30,7 +30,7 @@ int main ()
 	// Load a texture from the resources directory
 	Texture wabbit = LoadTexture("wabbit_alpha.png");
 
-	Scene* scene = new VectorScene("trigomonominee", 1280, 720);
+	Scene* scene = new VectorScene("Simulation", 1280, 720);
 	scene->Initialize();
 
 	// game loop
@@ -39,6 +39,7 @@ int main ()
 		scene->Update();
 		scene->BeginDraw();
 		scene->Draw();
+		scene->DrawGUI();
 		scene->EndDraw();
 	}
 

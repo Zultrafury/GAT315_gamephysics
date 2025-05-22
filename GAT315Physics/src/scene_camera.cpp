@@ -50,10 +50,10 @@ Rectangle SceneCamera::ScreenToWorld(const Rectangle& screen)
 	// convert to world, flip y
 	float worldX = screenX / (m_camera.zoom * m_ppu) + m_camera.target.x;
 	float worldY = -screenY / (m_camera.zoom * m_ppu) + m_camera.target.y;
-	float worldW = screen.width / (m_camera.zoom * m_ppu);
-	float worldH = -screen.height / (m_camera.zoom * m_ppu);
+	//float worldW = screen.width / (m_camera.zoom * m_ppu);
+	//float worldH = -screen.height / (m_camera.zoom * m_ppu);
 	
-	return { worldX, worldY, worldW, worldH };
+	return { worldX, worldY, screen.width, -screen.height };
 }
 
 Rectangle SceneCamera::WorldToScreen(const Rectangle& world)
