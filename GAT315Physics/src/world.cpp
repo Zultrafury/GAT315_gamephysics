@@ -1,6 +1,6 @@
 ﻿#include "world.h"
 #include "body.h"
-#include "raymath.h"
+#include "spring.h"
 
 World::~World() {
     DestroyAll();
@@ -29,6 +29,14 @@ Body* World::CreateBody(const Vector2& position, float mass, int type, float siz
     
 }
 
+Spring* World::CreateSpring(Body* body_a, Body* body_b, float restlength, float stiffness, float damping)
+{
+    Spring* spring = new Spring(body_a, body_b, restlength, stiffness, damping);
+    m_springs.push_back(spring);
+
+    return spring;
+}
+
 void World::Step(float dt)
 {
     for (auto body : m_bodies)
@@ -36,6 +44,10 @@ void World::Step(float dt)
         body->ApplyGravity(m_gravity);
         body->Step(dt);
         body->ClearForce();
+    }
+    for (auto spring : m_springs)
+    {
+        spring->ApplySpringForce();
     }
 }
 
@@ -45,10 +57,18 @@ void World::Draw(const Scene& scene)
     {
         body->Draw(scene);
     }
+    for (auto spring : m_springs)
+    {
+        spring->Draw(scene);
+    }
 }
 
 void World::DestroyAll()
 {
+    for (auto spring : m_springs)
+    {
+        delete spring;
+    }
     for (auto body : m_bodies)
     {
         delete body;

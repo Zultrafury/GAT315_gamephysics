@@ -25,6 +25,7 @@ public:
 	SceneCamera* GetCamera() { return m_camera; }
 
 	friend struct Body;
+	friend struct Spring;
 	
 protected:
 	void DrawGrid(float slices, float thickness, const Color& color) const;
