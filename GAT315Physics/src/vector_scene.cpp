@@ -10,7 +10,7 @@
 
 void VectorScene::Initialize()
 {
-    m_camera = new SceneCamera(Vector2{ static_cast<float>(m_width) / 2, static_cast<float>(m_height) / 2.0f });
+    m_camera = new SceneCamera(Vector2{static_cast<float>(m_width) / 2, static_cast<float>(m_height) / 2.0f});
     m_world = new World();
     m_world->Initialize();
     GuiEnable();
@@ -21,19 +21,21 @@ void VectorScene::Update()
 {
     float dt = GetFrameTime();
 
-    m_world->m_gravity = Vector2{0,-GravitySliderValue};
+    m_world->m_gravity = Vector2{0, -GravitySliderValue};
     if (IsMouseButtonPressed(1))
     {
         Vector2 position = m_camera->ScreenToWorld(GetMousePosition());
-        Body* body = m_world->CreateBody(position, MassSliderValue, TypeDropdownActive, SizeSliderValue, DampingSliderValue, RED);
+        Body* body = m_world->CreateBody(position, MassSliderValue, TypeDropdownActive, SizeSliderValue,
+                                         DampingSliderValue, RED);
         if (springhead != nullptr)
         {
             float dist = Vector2Length(springhead->pos - body->pos);
-            Spring* spring = m_world->CreateSpring(springhead,body,dist,SpringStiffSliderValue,SpringDampSliderValue);
+            Spring* spring = m_world->CreateSpring(springhead, body, dist, SpringStiffSliderValue,
+                                                   SpringDampSliderValue);
         }
 
         springhead = body;
-        
+
         /**
         for (int i = 0; i < 100; ++i)
         {
@@ -47,7 +49,7 @@ void VectorScene::Update()
         }
         **/
     }
-    
+
     m_world->Step(dt);
 
     for (auto body : m_world->GetBodies())
@@ -69,46 +71,47 @@ void VectorScene::DrawGUI()
 {
     // Bodies
     if (TypeDropdownEditMode) GuiLock();
-    Vector2 Anchor = Vector2{0,20};
+    Vector2 Anchor = Vector2{0, 20};
 
-    GuiGroupBox({ Anchor.x + 0, Anchor.y - 10, 251, 161 }, "Simulation Controls");
-    GuiSliderBar({ Anchor.x + 60, Anchor.y + 5, 185, 20 }, nullptr, nullptr, &SizeSliderValue, 0, 1);
-    GuiLabel({ Anchor.x + 5, Anchor.y + 2.5f, 50, 24 }, "Size");
-    GuiSliderBar({ Anchor.x + 60, Anchor.y + 35, 185, 20 }, nullptr, nullptr, &MassSliderValue, 0, 10);
-    GuiLabel({ Anchor.x + 5, Anchor.y + 32.5f, 50, 24 }, "Mass");
-    GuiSliderBar({ Anchor.x + 60, Anchor.y + 65, 185, 20 }, nullptr, nullptr, &DampingSliderValue, 0, 2);
-    GuiLabel({ Anchor.x + 5, Anchor.y + 62.5f, 50, 24 }, "Damping");
-    GuiSliderBar({ Anchor.x + 60, Anchor.y + 95, 185, 20 }, nullptr, nullptr, &GravitySliderValue, 0, 50);
-    GuiLabel({ Anchor.x + 5, Anchor.y + 92.5f, 50, 24 }, "Gravity");
+    GuiGroupBox({Anchor.x + 0, Anchor.y - 10, 251, 161}, "Simulation Controls");
+    GuiSliderBar({Anchor.x + 60, Anchor.y + 5, 185, 20}, nullptr, nullptr, &SizeSliderValue, 0, 1);
+    GuiLabel({Anchor.x + 5, Anchor.y + 2.5f, 50, 24}, "Size");
+    GuiSliderBar({Anchor.x + 60, Anchor.y + 35, 185, 20}, nullptr, nullptr, &MassSliderValue, 0, 10);
+    GuiLabel({Anchor.x + 5, Anchor.y + 32.5f, 50, 24}, "Mass");
+    GuiSliderBar({Anchor.x + 60, Anchor.y + 65, 185, 20}, nullptr, nullptr, &DampingSliderValue, 0, 2);
+    GuiLabel({Anchor.x + 5, Anchor.y + 62.5f, 50, 24}, "Damping");
+    GuiSliderBar({Anchor.x + 60, Anchor.y + 95, 185, 20}, nullptr, nullptr, &GravitySliderValue, 0, 50);
+    GuiLabel({Anchor.x + 5, Anchor.y + 92.5f, 50, 24}, "Gravity");
     //GuiSliderBar({ Anchor.x + 60, Anchor.y + 125, 285, 20 }, nullptr, nullptr, &PullSliderValue, 0, 100);
     //GuiLabel({ Anchor.x + 5, Anchor.y + 122.5f, 50, 24 }, "Pull");
-    if (GuiDropdownBox({ Anchor.x + 60, Anchor.y + 125, 185, 20 }, "Dynamic;Static;Kinematic", &TypeDropdownActive, TypeDropdownEditMode)) TypeDropdownEditMode = !TypeDropdownEditMode;
-    GuiLabel({ Anchor.x + 5, Anchor.y + 122.5f, 50, 24 }, "Type");
+    if (GuiDropdownBox({Anchor.x + 60, Anchor.y + 125, 185, 20}, "Dynamic;Static;Kinematic", &TypeDropdownActive,
+                       TypeDropdownEditMode)) TypeDropdownEditMode = !TypeDropdownEditMode;
+    GuiLabel({Anchor.x + 5, Anchor.y + 122.5f, 50, 24}, "Type");
 
     // Springs
-    Anchor += Vector2{250,0};
-    
-    GuiGroupBox({ Anchor.x + 0, Anchor.y - 10, 251, 71 }, "Spring Controls");
-    GuiSliderBar({ Anchor.x + 60, Anchor.y + 5, 185, 20 }, nullptr, nullptr, &SpringDampSliderValue, 0, 10);
-    GuiLabel({ Anchor.x + 5, Anchor.y + 2.5f, 50, 24 }, "Damping");
-    GuiSliderBar({ Anchor.x + 60, Anchor.y + 35, 185, 20 }, nullptr, nullptr, &SpringStiffSliderValue, 0, 10);
-    GuiLabel({ Anchor.x + 5, Anchor.y + 32.5f, 50, 24 }, "Stiffness");
-    if (GuiButton({ Anchor.x + 0, Anchor.y + 61, 120, 30 },"Detach"))
+    Anchor += Vector2{250, 0};
+
+    GuiGroupBox({Anchor.x + 0, Anchor.y - 10, 251, 71}, "Spring Controls");
+    GuiSliderBar({Anchor.x + 60, Anchor.y + 5, 185, 20}, nullptr, nullptr, &SpringDampSliderValue, 0, 10);
+    GuiLabel({Anchor.x + 5, Anchor.y + 2.5f, 50, 24}, "Damping");
+    GuiSliderBar({Anchor.x + 60, Anchor.y + 35, 185, 20}, nullptr, nullptr, &SpringStiffSliderValue, 0, 10);
+    GuiLabel({Anchor.x + 5, Anchor.y + 32.5f, 50, 24}, "Stiffness");
+    if (GuiButton({Anchor.x + 0, Anchor.y + 61, 120, 30}, "Detach"))
     {
         springhead = nullptr;
         //m_world->DestroyAll();
     }
-    
+
     GuiUnlock();
 }
 
 void VectorScene::Draw()
-{    
+{
     m_camera->BeginMode();
 
     DrawGrid(10, 2, DARKGRAY);
-    
+
     m_world->Draw(*this);
-    
+
     m_camera->EndMode();
 }

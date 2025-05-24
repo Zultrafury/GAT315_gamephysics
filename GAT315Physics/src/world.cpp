@@ -1,8 +1,9 @@
 ﻿#include "world.h"
-#include "body.h"
 #include "spring.h"
+#include "body.h"
 
-World::~World() {
+World::~World()
+{
     DestroyAll();
 }
 
@@ -26,7 +27,6 @@ Body* World::CreateBody(const Vector2& position, float mass, int type, float siz
     m_bodies.push_back(body);
 
     return body;
-    
 }
 
 Spring* World::CreateSpring(Body* body_a, Body* body_b, float restlength, float stiffness, float damping)

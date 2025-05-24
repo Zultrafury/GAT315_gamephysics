@@ -3,60 +3,60 @@
 
 void SceneCamera::BeginMode()
 {
-	m_camera.zoom = m_camera.offset.y / (m_size * m_ppu);
+    m_camera.zoom = m_camera.offset.y / (m_size * m_ppu);
 
-	rlDisableBackfaceCulling();
-	rlPushMatrix();
+    rlDisableBackfaceCulling();
+    rlPushMatrix();
 
-	// translate to camera offset (screen center)
-	rlTranslatef(m_camera.offset.x, m_camera.offset.y, 0.0f);
-	// apply zoom
-	rlScalef(m_camera.zoom, -m_camera.zoom, 1.0f); // note: negative Y for flip
-	// apply rotation
-	rlRotatef(m_camera.rotation, 0.0f, 0.0f, 1.0f);
-	// translate to negative camera target
-	rlTranslatef(-m_camera.target.x, -m_camera.target.y, 0.0f);
+    // translate to camera offset (screen center)
+    rlTranslatef(m_camera.offset.x, m_camera.offset.y, 0.0f);
+    // apply zoom
+    rlScalef(m_camera.zoom, -m_camera.zoom, 1.0f); // note: negative Y for flip
+    // apply rotation
+    rlRotatef(m_camera.rotation, 0.0f, 0.0f, 1.0f);
+    // translate to negative camera target
+    rlTranslatef(-m_camera.target.x, -m_camera.target.y, 0.0f);
 }
 
 void SceneCamera::EndMode()
 {
-	rlPopMatrix();
+    rlPopMatrix();
 }
 
 Vector2 SceneCamera::ScreenToWorld(const Vector2& screen)
 {
-	// convert to centered coordinates
-	float screenX = screen.x - m_camera.offset.x;
-	float screenY = screen.y - m_camera.offset.y;
+    // convert to centered coordinates
+    float screenX = screen.x - m_camera.offset.x;
+    float screenY = screen.y - m_camera.offset.y;
 
-	// convert to world, flip y
-	float worldX = screenX / (m_camera.zoom * m_ppu) + m_camera.target.x;
-	float worldY = -screenY / (m_camera.zoom * m_ppu) + m_camera.target.y;
+    // convert to world, flip y
+    float worldX = screenX / (m_camera.zoom * m_ppu) + m_camera.target.x;
+    float worldY = -screenY / (m_camera.zoom * m_ppu) + m_camera.target.y;
 
-	return { worldX, worldY };
+    return {worldX, worldY};
 }
 
 Vector2 SceneCamera::WorldToScreen(const Vector2& world)
 {
-	return { world.x * m_ppu, world.y * m_ppu };
+    return {world.x * m_ppu, world.y * m_ppu};
 }
 
 Rectangle SceneCamera::ScreenToWorld(const Rectangle& screen)
 {
-	// convert to centered coordinates
-	float screenX = screen.x - m_camera.offset.x;
-	float screenY = screen.y - m_camera.offset.y;
+    // convert to centered coordinates
+    float screenX = screen.x - m_camera.offset.x;
+    float screenY = screen.y - m_camera.offset.y;
 
-	// convert to world, flip y
-	float worldX = screenX / (m_camera.zoom * m_ppu) + m_camera.target.x;
-	float worldY = -screenY / (m_camera.zoom * m_ppu) + m_camera.target.y;
-	//float worldW = screen.width / (m_camera.zoom * m_ppu);
-	//float worldH = -screen.height / (m_camera.zoom * m_ppu);
-	
-	return { worldX, worldY, screen.width, -screen.height };
+    // convert to world, flip y
+    float worldX = screenX / (m_camera.zoom * m_ppu) + m_camera.target.x;
+    float worldY = -screenY / (m_camera.zoom * m_ppu) + m_camera.target.y;
+    //float worldW = screen.width / (m_camera.zoom * m_ppu);
+    //float worldH = -screen.height / (m_camera.zoom * m_ppu);
+
+    return {worldX, worldY, screen.width, -screen.height};
 }
 
 Rectangle SceneCamera::WorldToScreen(const Rectangle& world)
 {
-	return { world.x * m_ppu, world.y * m_ppu, world.width * m_ppu, -world.height * m_ppu };
+    return {world.x * m_ppu, world.y * m_ppu, world.width * m_ppu, -world.height * m_ppu};
 }

@@ -3,7 +3,7 @@
 
 void PolarScene::Initialize()
 {
-    m_camera = new SceneCamera(Vector2{ static_cast<float>(m_width) / 2, m_height / 2.0f });
+    m_camera = new SceneCamera(Vector2{static_cast<float>(m_width) / 2, m_height / 2.0f});
 }
 
 void PolarScene::Update()
@@ -15,13 +15,13 @@ void PolarScene::Draw()
     m_camera->BeginMode();
 
     DrawGrid(10, 5, WHITE);
-    
+
     float radius = 1;
     float rate = -0.1f;
     float time = GetTime() * rate;
-    
+
     float steps = 100;
-    Vector2 last = Vector2{0,0};
+    Vector2 last = Vector2{0, 0};
     /* // ARCHIMEDEAN
     for (float i = 0; i < steps; i += 0.1f)
     {
@@ -80,12 +80,12 @@ void PolarScene::Draw()
     time += -1;
     for (float i = 0; i < steps; i += 0.1f)
     {
-        float r = (time*time)/i;
-        Polar coords = Polar{i*time,r};
-        Color col = ColorFromHSV(r*80, 1.0, 1.0);
-        
-        DrawCircle(coords, coords.radius/20, col);
-        DrawLine(last,coords,col);
+        float r = (time * time) / i;
+        Polar coords = Polar{i * time, r};
+        Color col = ColorFromHSV(r * 80, 1.0, 1.0);
+
+        DrawCircle(coords, coords.radius / 20, col);
+        DrawLine(last, coords, col);
         last = coords;
     }
 

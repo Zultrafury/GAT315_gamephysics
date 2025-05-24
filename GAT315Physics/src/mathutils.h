@@ -15,5 +15,5 @@ inline float randomf(float max)
 inline float randomf(float min, float max)
 {
     if (min > max) std::swap(min, max);
-    return min + (randomf() * (max-min));
+    return min + (randomf() * (max - min));
 }

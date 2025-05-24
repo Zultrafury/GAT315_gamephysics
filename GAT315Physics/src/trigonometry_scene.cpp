@@ -6,7 +6,7 @@
 
 void TrigonometryScene::Initialize()
 {
-	m_camera = new SceneCamera(Vector2{ static_cast<float>(m_width) / 2, m_height / 2.0f });
+    m_camera = new SceneCamera(Vector2{static_cast<float>(m_width) / 2, m_height / 2.0f});
 }
 
 void TrigonometryScene::Update()
@@ -15,12 +15,12 @@ void TrigonometryScene::Update()
 
 float DegToRad(float degrees)
 {
-	return degrees * (PI / 180.0f);
+    return degrees * (PI / 180.0f);
 }
 
 float RadToDeg(float radians)
 {
-	return radians * (180.0f / PI);
+    return radians * (180.0f / PI);
 }
 
 /*
@@ -40,43 +40,43 @@ Vector2 Vector2Normalize(const Vector2& v)
 
 void TrigonometryScene::Draw()
 {
-	m_camera->BeginMode();
+    m_camera->BeginMode();
 
-	DrawGrid(10, 5, WHITE);
-	//DrawCircleV(m_camera->WorldToScreen(Vector2{ 0, 0 }), m_camera->WorldToScreen(1), RED);
+    DrawGrid(10, 5, WHITE);
+    //DrawCircleV(m_camera->WorldToScreen(Vector2{ 0, 0 }), m_camera->WorldToScreen(1), RED);
 
-	float radius = 3;
-	float rate = 1.2f;
-	float time = GetTime() * rate;
+    float radius = 3;
+    float rate = 1.2f;
+    float time = GetTime() * rate;
 
-	// circle
-	int steps = 10;
-	for (int i = 0; i < steps; i++)
-	{
-		float theta = time + (i/static_cast<float>(steps)) * (2 * PI);
-		float x = cos(theta) * radius;
-		float y = sin(theta) * radius;
+    // circle
+    int steps = 10;
+    for (int i = 0; i < steps; i++)
+    {
+        float theta = time + (i / static_cast<float>(steps)) * (2 * PI);
+        float x = cos(theta) * radius;
+        float y = sin(theta) * radius;
 
-		DrawCircle(Vector2{x,y}, 0.1f, GREEN);
-	}
+        DrawCircle(Vector2{x, y}, 0.1f, GREEN);
+    }
 
-	// sin/ cos
-	for (float f = -9.0f; f < 9; f += 0.2f)
-	{
-		float theta = time + (f/6) * (2* PI);
-		float c = cos(theta) * radius;
+    // sin/ cos
+    for (float f = -9.0f; f < 9; f += 0.2f)
+    {
+        float theta = time + (f / 6) * (2 * PI);
+        float c = cos(theta) * radius;
 
-		DrawCircle(Vector2{f,c}, 0.1f, BLUE);
-	}
+        DrawCircle(Vector2{f, c}, 0.1f, BLUE);
+    }
 
-	// speedy circle
-	Vector2 coords = Vector2{cosf(-3 * time) * radius,sinf(-3 * time) * radius};
-	DrawCircle(coords, 0.25f, PURPLE);
+    // speedy circle
+    Vector2 coords = Vector2{cosf(-3 * time) * radius, sinf(-3 * time) * radius};
+    DrawCircle(coords, 0.25f, PURPLE);
 
-	float angle = atan2(coords.y,coords.x);
-	DrawCircle(Vector2Normalize(coords),angle,WHITE);
+    float angle = atan2(coords.y, coords.x);
+    DrawCircle(Vector2Normalize(coords), angle,WHITE);
 
-	m_camera->EndMode();
+    m_camera->EndMode();
 }
 
 void TrigonometryScene::DrawGUI()
