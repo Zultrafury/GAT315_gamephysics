@@ -14,9 +14,16 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DpaMonitoringSettings">
-    <option name="autoShow" value="false" />
+    <option name="firstShow" value="false" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://4" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/build/external/raylib-master/src/raylib.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/build/external/raylib-master/src/raymath.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/raygui/examples/animation_curve/animation_curve.c" root0="SKIP_HIGHLIGHTING" />
@@ -26,7 +33,6 @@
     <setting file="file://$PROJECT_DIR$/src/raygui.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/spring.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/spring.h" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Coding/Neumont/GAT315_gamephysics/GAT315Physics/src/world.h" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -217,6 +223,7 @@
       <workItem from="1746723867579" duration="3953000" />
       <workItem from="1747069579333" duration="2684000" />
       <workItem from="1747355363969" duration="5899000" />
+      <workItem from="1748840571165" duration="3787000" />
     </task>
     <servers />
   </component>

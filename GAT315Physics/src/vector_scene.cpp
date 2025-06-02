@@ -27,6 +27,7 @@ void VectorScene::Update()
         Vector2 position = m_camera->ScreenToWorld(GetMousePosition());
         Body* body = m_world->CreateBody(position, MassSliderValue, TypeDropdownActive, SizeSliderValue,
                                          DampingSliderValue, RED);
+        /**
         if (springhead != nullptr)
         {
             float dist = Vector2Length(springhead->pos - body->pos);
@@ -35,6 +36,7 @@ void VectorScene::Update()
         }
 
         springhead = body;
+        **/
 
         /**
         for (int i = 0; i < 100; ++i)

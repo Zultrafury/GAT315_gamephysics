@@ -1,7 +1,10 @@
 ﻿#pragma once
 #include <vector>
+#include "contact.h"
 #include "raylib.h"
 #include "scene.h"
+
+using contacts_t = std::vector<Contact>;
 
 struct Body;
 struct Spring;
@@ -28,4 +31,5 @@ public:
 private:
     std::vector<Body*> m_bodies;
     std::vector<Spring*> m_springs;
+    contacts_t m_contacts;
 };

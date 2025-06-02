@@ -1,6 +1,7 @@
 ﻿#include "world.h"
 #include "spring.h"
 #include "body.h"
+#include "collision.h"
 
 World::~World()
 {
@@ -45,10 +46,15 @@ void World::Step(float dt)
         body->Step(dt);
         body->ClearForce();
     }
+    
     for (auto spring : m_springs)
     {
         spring->ApplySpringForce();
     }
+
+    m_contacts.clear();
+    CreateContacts(m_bodies, m_contacts);
+    SeparateContacts(m_contacts);
 }
 
 void World::Draw(const Scene& scene)
