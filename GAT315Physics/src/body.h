@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "AABB.h"
 #include "raylib.h"
 #include "raymath.h"
 #include "scene.h"
@@ -11,6 +12,12 @@ public:
         Dynamic,
         Static,
         Kinematic
+    };
+
+    enum class ForceMode
+    {
+        Force,
+        Impulse
     };
 
 public:
@@ -49,9 +56,10 @@ public:
     void Step(float dt);
     void Draw(const Scene& scene) const;
 
-    void ApplyForce(const Vector2& force);
+    void ApplyForce(const Vector2& force, ForceMode mode = ForceMode::Force);
     void ApplyGravity(const Vector2& gravity) { frc += (gravity * gravScale) * mass; }
     void ClearForce() { frc = Vector2{0, 0}; }
+    AABB GetAABB() const { return AABB{ pos, { size * 2, size * 2 } }; }
 
     Vector2 pos{0, 0};
     Vector2 vel{0, 0};

@@ -18,7 +18,14 @@ void Body::Draw(const Scene& scene) const
     scene.DrawCircle(pos, size, col);
 }
 
-void Body::ApplyForce(const Vector2& force)
+void Body::ApplyForce(const Vector2& force, ForceMode mode)
 {
-    frc += force;
+    if (mode == ForceMode::Force)
+    {
+        frc += force;
+    }
+    else if (mode == ForceMode::Impulse)
+    {
+        vel += force;
+    }
 }
