@@ -39,7 +39,7 @@ void CreateContacts(const bodies_t& bodies, contacts_t& contacts)
                 float radius = bodyA->size + bodyB->size;
                 contact.depth = (radius) - distance;
                 contact.normal = Vector2Normalize(direction);
-                contact.restitution = (bodyA->damping + bodyB->damping) / 2;
+                contact.restitution = (bodyA->restitution + bodyB->restitution) / 2;
 
                 contacts.push_back(contact);
             }

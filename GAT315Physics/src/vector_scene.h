@@ -26,8 +26,11 @@ private:
     float MassSliderValue = 1; // SliderBar: MassSlider
     float SizeSliderValue = 0.1f; // SliderBar: SizeSlider
     float DampingSliderValue = 0.5f; // SliderBar: DampingSlider
+    float RestitutionSliderValue = 0; // SliderBar: DampingSlider
     float GravitySliderValue = 9.81f; // SliderBar: GravitySlider
     float PullSliderValue = 0.0f; // SliderBar: PullSlider
     float SpringDampSliderValue = 0.5f;
     float SpringStiffSliderValue = 1.0f;
+    bool SpringAttachMode = false;
+    bool SimulationPaused = false;
 };

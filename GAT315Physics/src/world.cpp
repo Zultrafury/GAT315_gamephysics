@@ -22,9 +22,9 @@ Body* World::CreateBody(const Vector2& position, float size, const Color& color)
     return body;
 }
 
-Body* World::CreateBody(const Vector2& position, float mass, int type, float size, float damping, const Color& color)
+Body* World::CreateBody(const Vector2& position, float mass, int type, float size, float damping, const Color& color, float restitution)
 {
-    Body* body = new Body(position, mass, static_cast<Body::Type>(type), size, damping, color);
+    Body* body = new Body(position, mass, static_cast<Body::Type>(type), size, damping, color, restitution);
     m_bodies.push_back(body);
 
     return body;
@@ -73,7 +73,7 @@ void World::Draw(const Scene& scene)
     }
 }
 
-void World::DestroyAll()
+void World::DestroyAll() const
 {
     for (auto spring : m_springs)
     {

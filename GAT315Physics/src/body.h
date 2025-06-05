@@ -31,14 +31,15 @@ public:
     {
     }
 
-    Body(const Vector2& position, float mass, Type type, float size = 0.25f, float damping = 0.5f,
-         const Color& color = WHITE) :
+    Body(const Vector2& position, const float mass, Type type, const float size = 0.25f, const float damping = 0.5f,
+         const Color& color = WHITE, const float bounce = 0.5f) :
         pos{position},
         type{type},
         size{size},
         damping{damping},
         col{color},
-        mass{mass}
+        mass{mass},
+        restitution{bounce}
     {
         invMass = (type == Type::Dynamic) ? 1 / mass : 0;
     }
@@ -68,6 +69,7 @@ public:
     Type type{Type::Dynamic};
     float size;
     float damping = 0.5f;
+    float restitution = 0.5f;
     Color col;
     float mass{1};
     float invMass{1};

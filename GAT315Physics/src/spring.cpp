@@ -3,8 +3,9 @@
 #include "body.h"
 #include "scene.h"
 
-void Spring::ApplySpringForce(float damping, float mult)
+void Spring::ApplySpringForce(float mult)
 {
+    float damping = m_damping;
     // Step 1: Calculate direction vector from bodyB to bodyA
     Vector2 direction = m_body_a->pos - m_body_b->pos;
     float lengthSquared = Vector2LengthSqr(direction);
@@ -32,11 +33,6 @@ void Spring::ApplySpringForce(float damping, float mult)
     // Step 6: Apply equal and opposite forces to the two bodies
     m_body_a->ApplyForce(totalForce);
     m_body_b->ApplyForce(Vector2Negate(totalForce));
-}
-
-void Spring::ApplySpringForce(float mult)
-{
-    ApplySpringForce(m_damping, mult);
 }
 
 void Spring::Draw(const Scene& scene) const

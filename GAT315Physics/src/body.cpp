@@ -4,13 +4,20 @@
 
 void Body::Step(float dt)
 {
-    if (type != Type::Dynamic) return;
+    switch (type) {
+    case Type::Static:
+        return;
+    case Type::Kinematic:
+        SemiImplicitIntegrator(*this, dt);
+        break;
+    case Type::Dynamic:
+        acl = frc * invMass;
 
-    acl = frc * invMass;
+        SemiImplicitIntegrator(*this, dt);
 
-    SemiImplicitIntegrator(*this, dt);
-
-    vel *= 1 / (1 + (dt * damping));
+        vel *= 1 / (1 + (dt * damping));
+        break;
+    }
 }
 
 void Body::Draw(const Scene& scene) const
@@ -20,6 +27,7 @@ void Body::Draw(const Scene& scene) const
 
 void Body::ApplyForce(const Vector2& force, ForceMode mode)
 {
+    if (type != Type::Dynamic) return;
     if (mode == ForceMode::Force)
     {
         frc += force;

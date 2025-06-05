@@ -13,7 +13,6 @@ public:
     m_restlength{restlength}
     {}
     
-    void ApplySpringForce(float damping, float mult = 1);
     void ApplySpringForce(float mult = 1);
     void Draw(const Scene& scene) const;
     
