@@ -26,6 +26,8 @@ void CreateContacts(const bodies_t& bodies, contacts_t& contacts)
                 Contact contact;
                 contact.bodyA = bodyA;
                 contact.bodyB = bodyB;
+                bodyA->SetCollided();
+                bodyB->SetCollided();
 
                 Vector2 direction = bodyA->pos - bodyB->pos;
                 float distanceSqr = Vector2LengthSqr(direction);

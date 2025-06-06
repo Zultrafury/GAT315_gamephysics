@@ -2,6 +2,7 @@
 #include "raylib.h"
 #include "scene_camera.h"
 #include <string>
+#include <vector>
 
 class World;
 
@@ -16,6 +17,7 @@ public:
 
     virtual void BeginDraw();
     virtual void EndDraw();
+    void DrawGrid(float slices, float thickness, const Color& color) const;
     virtual void Draw() = 0;
     virtual void DrawGUI() = 0;
 
@@ -27,8 +29,10 @@ public:
     friend struct Body;
     friend struct Spring;
 
+    std::vector<Sound> m_sounds{};
+
 protected:
-    void DrawGrid(float slices, float thickness, const Color& color) const;
+    void DrawGrid(float slices, float thickness, const Color& color, Vector2 offset) const;
     void DrawCircle(const Vector2& vec, float radius, const Color& color) const;
     void DrawLine(const Vector2& first, const Vector2& last, const Color& color) const;
 

@@ -18,6 +18,12 @@ void Body::Step(float dt)
         vel *= 1 / (1 + (dt * damping));
         break;
     }
+
+    if (exptime > -100)
+    {
+        exptime -= dt;
+        if (exptime < 0) delme = true;
+    }
 }
 
 void Body::Draw(const Scene& scene) const

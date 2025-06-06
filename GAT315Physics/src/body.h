@@ -78,4 +78,18 @@ public:
 
     Body* next = nullptr;
     Body* prev = nullptr;
+
+    bool GetCollided()
+    {
+        const bool coll = collided;
+        collided = false;
+        return coll;
+    }
+    void SetCollided(const bool coll = true) { collided = coll; }
+
+    float exptime = -100;
+    bool delme = false;
+    
+private:
+    bool collided = false;
 };

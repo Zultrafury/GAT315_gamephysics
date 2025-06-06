@@ -27,11 +27,16 @@ void Scene::EndDraw()
 
 void Scene::DrawGrid(float slices, float thickness, const Color& color) const
 {
+    DrawGrid(slices, thickness, color, Vector2 {0,0});
+}
+
+void Scene::DrawGrid(float slices, float thickness, const Color& color, const Vector2 offset) const
+{
     for (float i = -slices; i <= slices; i++)
     {
-        DrawLineEx(m_camera->WorldToScreen(Vector2{-slices, i}), m_camera->WorldToScreen(Vector2{slices, i}), thickness,
+        DrawLineEx(m_camera->WorldToScreen(Vector2{-slices, i + offset.y}), m_camera->WorldToScreen(Vector2{slices, i + offset.y}), thickness,
                    color);
-        DrawLineEx(m_camera->WorldToScreen(Vector2{i, -slices}), m_camera->WorldToScreen(Vector2{i, slices}), thickness,
+        DrawLineEx(m_camera->WorldToScreen(Vector2{i + offset.x, -slices}), m_camera->WorldToScreen(Vector2{i + offset.x, slices}), thickness,
                    color);
     }
 }

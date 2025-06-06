@@ -7,6 +7,7 @@ by Jeffery Myers is marked with CC0 1.0. To view a copy of this license, visit h
 
 */
 
+#include "game_scene.h"
 #include "polar_scene.h"
 #include "trigonometry_scene.h"
 #include "raylib.h"
@@ -26,11 +27,12 @@ int main()
     SearchAndSetResourceDir("resources");
 
     SetTargetFPS(60);
+    InitAudioDevice();
 
     // Load a texture from the resources directory
     Texture wabbit = LoadTexture("wabbit_alpha.png");
 
-    Scene* scene = new VectorScene("Simulation", 1280, 720);
+    Scene* scene = new GameScene("Simulation", 1280, 720);
     scene->Initialize();
 
     // game loop
@@ -47,6 +49,11 @@ int main()
     // cleanup
     // unload our texture so it can be cleaned up
     UnloadTexture(wabbit);
+    for (auto sound : scene->m_sounds)
+    {
+        UnloadSound(sound);
+    }
+    CloseAudioDevice();
 
     // destroy the window and cleanup the OpenGL context
     CloseWindow();

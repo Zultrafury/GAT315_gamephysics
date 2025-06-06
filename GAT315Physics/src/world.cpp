@@ -40,11 +40,13 @@ Spring* World::CreateSpring(Body* body_a, Body* body_b, float restlength, float 
 
 void World::Step(float dt)
 {
-    for (auto body : m_bodies)
+    for (size_t i = 0; i < m_bodies.size(); i++)
     {
+        Body* body = m_bodies[i];
         body->ApplyGravity(m_gravity);
         body->Step(dt);
         body->ClearForce();
+        if (body->delme) m_bodies.erase(m_bodies.begin() + i);
     }
     
     for (auto spring : m_springs)
